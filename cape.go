@@ -14,9 +14,13 @@ import (
 
 func getCapeImg(username string) (image.Image, error) {
 	resp, err := http.Get(fmt.Sprintf("http://s.optifine.net/capes/%v.png", username))
+
 	if err != nil {
 		return nil, err
 	}
+
+	defer resp.Body.Close()
+
 	if resp.StatusCode == 200 {
 		img, _ := png.Decode(resp.Body)
 		return img, nil
