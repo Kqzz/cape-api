@@ -51,7 +51,7 @@ func cropCape(cape image.Image) (image.Image, bool, error) {
 		}
 		customCape = true
 	} else {
-		log.Fatalf("unknown image width%v", bounds.Max.X)
+		return nil, false, fmt.Errorf("invalid cape size of %v", bounds.Max.X)
 	}
 	croppedImg, err := cutter.Crop(cape, config)
 	if err != nil {
@@ -97,7 +97,3 @@ func getCapeBytes(username string, scale int) ([]byte, error) {
 	return buf.Bytes(), nil
 
 }
-
-// func main() {
-// 	fmt.Println(grabCapeBytes("Elektra", 10))
-// }
