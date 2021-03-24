@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./custom.css">
+    <title>Cape API</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Cape API</h1>
+        <h2>Written by Kqzz#0001</h2>
+    </div>
+    <p>
+        This is a small api built to grab optifine capes from users and crop them so you can only see the back of the cape (what you see in game).
+        The only endpoint (at the moment) is <code>/api/croppedcape/:username</code> which returns the cropped cape of a user or text and a 400 status code if something went wrong.
+        <h3>
+            Examples
+        </h3>
+        <pre>
+            <code>
+                # Request:
+                GET /api/croppedcape/Elektra HTTP/1.1
+                Host: capes.kqzz.me
+
+                # Response:
+                HTTP/1.1 200 OK
+                Date: Wed, 24 Mar 2021 18:29:37 GMT
+                Content-Length: 270
+                Content-Type: image/png
+                
+                *image bytes*
+            </code>
+        </pre>
+
+        <pre>
+            <code>
+                # Request:
+                GET /api/croppedcape/Elektra?scale=10 HTTP/1.1  # ?scale=10 makes the cape 10 times larger
+                Host: capes.kqzz.me
+
+                # Response:
+                HTTP/1.1 200 OK
+                Date: Wed, 24 Mar 2021 18:29:37 GMT
+                Content-Length: 270
+                Content-Type: image/png
+                
+                *image bytes*
+            </code>
+        </pre>
+
+        <h3>
+            Before / After crop
+        </h3>
+
+        <p>
+            Before:
+        </p>
+        <img src="./before.png" alt="">
+
+        <p>
+            After:
+        </p>
+        
+        <img src="./after.png" alt="">
+    </p>
+</body>
+</html>

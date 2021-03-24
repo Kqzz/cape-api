@@ -1,0 +1,29 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+p {
+    font-size: large;
+}
+
+h3 {
+    font-size: xx-large;
+} 
+
+.header {
+    text-align: center;
+}
+
+pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+}
+
+code {
+    background-color: #eee;
+    border: 1px solid #999;
+    border-radius: 4px;
+}

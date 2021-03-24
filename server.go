@@ -13,7 +13,12 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
 }
 
+const (
+	port = 8080
+)
+
 func main() {
+
 	router := httprouter.New()
 	router.GET("/croppedcape/:username", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		username := ps.ByName("username")
@@ -30,7 +35,7 @@ func main() {
 		}
 
 		if scale > 100 {
-			fmt.Fprintf(w, "a scale of %v is too high. you can only use a scale of up to 100.", scale)
+			http.Error(w, fmt.Sprintf("a scale of %v is too high. you can only use a scale of up to 100.", scale), 400)
 			return
 		}
 
@@ -38,9 +43,19 @@ func main() {
 
 		capeBytes, err := getCapeBytes(username, scale)
 		if err != nil {
-			fmt.Fprint(w, err.Error())
+			http.Error(w, err.Error(), 400)
+			return
 		}
 		w.Write(capeBytes)
 	})
-	log.Fatal(http.ListenAndServe(":8080", router))
+
+	router.ServeFiles("/info/*filepath", http.Dir("./static"))
+
+	router.GET("/", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		http.Redirect(w, r, "/info", http.StatusPermanentRedirect)
+	})
+
+	fmt.Printf("Listening on port %v", port)
+
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), router))
 }
