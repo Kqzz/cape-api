@@ -22,4 +22,5 @@ pre code {
     display: block;
     overflow: scroll;
     overflow-y: hidden;
+    padding: 20px;
 }
