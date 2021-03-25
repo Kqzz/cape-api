@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./custom.css">
     <title>Cape API</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://capes.kqzz.me">
+    <meta property="og:title" content="Cape API">
+    <meta property="og:description" content="Optifine cape cropping API">
 </head>
 <body>
     <div class="header">
@@ -20,33 +25,52 @@
         </h3>
         <pre>
             <code>
-                # Request:
-                GET /api/croppedcape/Elektra HTTP/1.1
-                Host: capes.kqzz.me
+# Request:
+GET /croppedcape/Elektra HTTP/1.1
+Host: capes.kqzz.me
 
-                # Response:
-                HTTP/1.1 200 OK
-                Date: Wed, 24 Mar 2021 18:29:37 GMT
-                Content-Length: 270
-                Content-Type: image/png
-                
-                *image bytes*
+# Response:
+HTTP/1.1 200 OK
+Date: Wed, 24 Mar 2021 18:29:37 GMT
+Content-Length: 270
+Content-Type: image/png
+
+*image bytes*
             </code>
         </pre>
 
+
         <pre>
             <code>
-                # Request:
-                GET /api/croppedcape/Elektra?scale=10 HTTP/1.1  # ?scale=10 makes the cape 10 times larger
-                Host: capes.kqzz.me
+# Request:
+GET /croppedcape/Elektra?scale=10 HTTP/1.1  # ?scale=10 makes the cape 10 times larger
+Host: capes.kqzz.me
 
-                # Response:
-                HTTP/1.1 200 OK
-                Date: Wed, 24 Mar 2021 18:29:37 GMT
-                Content-Length: 270
-                Content-Type: image/png
-                
-                *image bytes*
+# Response:
+HTTP/1.1 200 OK
+Date: Wed, 24 Mar 2021 18:29:37 GMT
+Content-Length: 270
+Content-Type: image/png
+
+*image bytes*
+            </code>
+        </pre>
+
+        <h4>
+            Python Example
+        </h4>
+        <pre>
+            <code>
+import requests
+
+r = requests.get("https://capes.kqzz.me/croppedcape/Elektra")
+
+resp_bytes = b""
+
+if r.status_code == 200:
+    resp_bytes = r.content
+else:
+    print(f"something went wrong! | {r.text} | {r.status_code}")
             </code>
         </pre>
 
