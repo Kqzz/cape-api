@@ -24,10 +24,9 @@ func getCapeImg(username string) (image.Image, error) {
 	if resp.StatusCode == 200 {
 		img, _ := png.Decode(resp.Body)
 		return img, nil
-	} else {
-		return nil, fmt.Errorf("cape not found on user %v", username)
 	}
 
+	return nil, fmt.Errorf("cape not found on user %v", username)
 }
 
 func cropCape(cape image.Image) (image.Image, bool, error) {
