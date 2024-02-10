@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,14 +10,12 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-const (
-	port = 8080
-)
-
 func main() {
+	port := 0
+	flag.IntVar(&port, "port", 8080, "port to listen on")
 
 	router := httprouter.New()
-	router.GET("/croppedcape/:username", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	router.GET("/cape/:username", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		username := ps.ByName("username")
 		var scale int
 

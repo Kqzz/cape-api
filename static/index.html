@@ -15,18 +15,18 @@
 <body>
     <div class="header">
         <h1>Cape API</h1>
-        <h2>Written by Kqzz#0001</h2>
+        <h3>Made & hosted by kqzz</h3>
     </div>
     <p>
-        This is a small api built to grab optifine capes from users and crop them so you can only see the back of the cape (what you see in game).
-        The only endpoint (at the moment) is <code>/croppedcape/:username</code> which returns the cropped cape of a user or text and a 400 status code if something went wrong.
+        This is a small api built to grab optifine capes from Minecraft users and crop / scale them so you can only see the back of the cape (what you see in game).
+        The only endpoint (at the moment) is <code>/cape/:username</code> which returns the cropped cape of a user or text and a 400 status code if something went wrong.
         <h3>
             Examples
         </h3>
         <pre>
             <code>
 # Request:
-GET /croppedcape/Elektra HTTP/1.1
+GET /cape/Elektra HTTP/1.1
 Host: capes.kqzz.me
 
 # Response:
@@ -43,7 +43,7 @@ Content-Type: image/png
         <pre>
             <code>
 # Request:
-GET /croppedcape/Elektra?scale=10 HTTP/1.1  # ?scale=10 makes the cape 10 times larger
+GET /cape/Elektra?scale=10 HTTP/1.1  # ?scale=10 makes the cape 10 times larger
 Host: capes.kqzz.me
 
 # Response:
@@ -63,7 +63,7 @@ Content-Type: image/png
             <code>
 import requests
 
-r = requests.get("https://capes.kqzz.me/croppedcape/Elektra")
+r = requests.get("https://capes.kqzz.me/cape/Elektra")
 
 resp_bytes = b""
 

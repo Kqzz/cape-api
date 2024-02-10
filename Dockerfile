@@ -1,9 +1,9 @@
-FROM golang:1.14-alpine AS build
+FROM golang:1.21-alpine AS build
 
 WORKDIR /src/
 COPY . /src/
-RUN apk update
-RUN apk add git
+RUN apk --no-cache update
+# RUN apk --no-cache add git
 RUN go get -v -d ./...
 RUN CGO_ENABLED=0 go build -o /bin/cape-api
 
